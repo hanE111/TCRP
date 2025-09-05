@@ -24,8 +24,8 @@ from meta_learner_cv import *
 # It applies the cross validation framework proposed by Siamese Network
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--feature_dic', type=str, default='/home-nfs/siqi/TCRP/data/Sorafenib/', help='Feature folder')
-parser.add_argument('--model_dic', type=str, default='/cellar/users/majianzhu/TCRP/models/', help='Feature folder')
+parser.add_argument('--feature_dic', type=str, default='../data/Sorafenib/', help='Feature folder')
+parser.add_argument('--model_dic', type=str, default='../MODELS/', help='Feature folder')
 parser.add_argument('--drug', type=str, default='AC220', help='Treated drug')
 parser.add_argument('--seed', type=int, default=19, help='Random seed.')
 parser.add_argument('--K', type=int, default=10, help='Perform K shot learning')
@@ -36,7 +36,7 @@ parser.add_argument('--num_inner_updates', type=int, default=1, help='Initial le
 parser.add_argument('--num_out_updates', type=int, default=20, help='Final learning rate')
 parser.add_argument('--num_trials', type=int, default=50, help='Number of trials for unseen tissue')
 parser.add_argument('--hidden', type=int, default=60, help='Number of hidden units of NN for single task')
-parser.add_argument('--tissue_list', type=str, default='/home-nfs/siqi/TCRP/data/Sorafenib_tissue_map.pkl', help='Cell line list for different tissues, used for defining meta-tasks in the meta-learning phase')
+parser.add_argument('--tissue_list', type=str, default='../data/Sorafenib_tissue_map.pkl', help='Cell line list for different tissues, used for defining meta-tasks in the meta-learning phase')
 parser.add_argument('--meta_lr', type=float, default=0.001, help='Learning rate for meta-learning update')
 parser.add_argument('--inner_lr', type=float, default=0.001, help='Learning rate for ')
 parser.add_argument('--tissue_num', type=int, default=12, help='Tissue number evolved in the inner update')

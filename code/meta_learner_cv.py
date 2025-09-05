@@ -56,8 +56,8 @@ class MetaLearner(object):
 		self.inner_net = InnerLoop(self.num_inner_updates, self.inner_lr, self.feature_num, layer, hidden)
 
 		#torch.cuda.manual_seed(args.seed)
-		self.observed_tissue_model.cuda()
-		self.inner_net.cuda()
+		self.observed_tissue_model#.cuda()
+		self.inner_net#.cuda()
 
 	def zero_shot_test(self, unseen_train_loader, unseen_vali_loader, unseen_test_loader):
 		
@@ -65,7 +65,7 @@ class MetaLearner(object):
 
 		# First need to copy the original meta learning model
 		unseen_tissue_model.copy_weights( self.observed_tissue_model )
-		unseen_tissue_model.cuda()
+		unseen_tissue_model#.cuda()
 		unseen_tissue_model.eval()
 
 		train_performance = evaluate_cv( unseen_tissue_model, unseen_train_loader)
@@ -119,7 +119,7 @@ class MetaLearner(object):
 
 		# First need to copy the original meta learning model
 		unseen_tissue_model.copy_weights( self.observed_tissue_model )
-		unseen_tissue_model.cuda()
+		unseen_tissue_model#.cuda()
 		#unseen_tissue_model.train()
 		unseen_tissue_model.eval()
 

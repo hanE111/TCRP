@@ -23,7 +23,7 @@ def batchnorm(input, weight=None, bias=None, running_mean=None, running_var=None
 	#running_mean = torch.zeros(np.prod(np.array(input.data.size()[1]))).cuda()
 	#running_var = torch.ones(np.prod(np.array(input.data.size()[1]))).cuda()
 
-	running_mean = torch.zeros(np.prod(np.array(input.data.size()[1]))).cuda()
-	running_var = torch.ones(np.prod(np.array(input.data.size()[1]))).cuda()
+	running_mean = torch.zeros(np.prod(np.array(input.data.size()[1])))#.cuda()
+	running_var = torch.ones(np.prod(np.array(input.data.size()[1])))#.cuda()
 	
 	return F.batch_norm(input, running_mean, running_var, weight, bias, training, momentum, eps)

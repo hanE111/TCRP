@@ -74,7 +74,9 @@ def get_observed_data_loader(feature, label, tissue_index_list, K, batch_size, t
 	for batch_feature, batch_label in loader:
 		if batch_feature.size()[0] == 1:
 			continue
-		train_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		# train_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		train_data_list.append( (batch_feature, batch_label) )
+
 
 	#print '===', test_sampled_index_list,feature.shape
 	test_feature = torch.FloatTensor( feature[test_sampled_index_list,:] )
@@ -87,7 +89,8 @@ def get_observed_data_loader(feature, label, tissue_index_list, K, batch_size, t
 	for batch_feature, batch_label in loader:
 		if batch_feature.size()[0] == 1:
 			continue
-		test_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		# test_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		test_data_list.append( (batch_feature, batch_label) )
 
 	return train_data_list, test_data_list
 
@@ -124,7 +127,8 @@ def get_observed_data_loader2(feature, label, tissue_index_list, K, batch_size):
 	
 	train_data_list = []
 	for batch_feature, batch_label in loader:
-		train_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		# train_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		train_data_list.append( (batch_feature, batch_label) )
 
 	test_feature = torch.FloatTensor( feature[test_sampled_index_list,:] )
 	test_label = torch.FloatTensor( label[test_sampled_index_list,:] )
@@ -134,7 +138,8 @@ def get_observed_data_loader2(feature, label, tissue_index_list, K, batch_size):
 
 	test_data_list = []
 	for batch_feature, batch_label in loader:
-		test_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		# test_data_list.append( (batch_feature.cuda(), batch_label.cuda()) )
+		test_data_list.append( (batch_feature, batch_label) )
 
 	return train_data_list, test_data_list
 
@@ -155,12 +160,15 @@ def load_unseen_data_loader(train_index_file, test_index_file, feature, label, K
 	train_loader = du.DataLoader(train_dataset, batch_size=1)
 	train_data_list = []
 	for batch_feature, batch_label in train_loader:
-		train_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		# train_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		train_data_list.append((batch_feature, batch_label))
+		train_data_list.append((batch_feature, batch_label))
 
 	test_loader = du.DataLoader(test_dataset, batch_size=batch_size)
 	test_data_list = []
 	for batch_feature, batch_label in test_loader:
-		test_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		# test_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		test_data_list.append((batch_feature, batch_label))
 
 	return train_data_list, test_data_list
 
@@ -183,11 +191,13 @@ def get_unseen_data_loader(feature, label, K, batch_size=1):
 	train_loader = du.DataLoader(train_dataset, batch_size=batch_size)
 	train_data_list = []
 	for batch_feature, batch_label in train_loader:
-		train_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		# train_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		train_data_list.append((batch_feature, batch_label))
 	
 	test_loader = du.DataLoader(test_dataset, batch_size=batch_size)
 	test_data_list = []
 	for batch_feature, batch_label in test_loader:
-		test_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		# test_data_list.append((batch_feature.cuda(), batch_label.cuda()))
+		test_data_list.append((batch_feature, batch_label))
 
 	return train_data_list, test_data_list
